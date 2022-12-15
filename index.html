@@ -16,8 +16,44 @@
     let sC1 = 5;
     let sC2 = 5;
 
-    function returns {
-        
+    function rockC1 () {
+        rC1--;
+        if (rC1 <= 0) {
+            document.getElementById("r1").innerHTML = "rock: NO MORE LEFT!"; 
+        }
+        else {
+            document.getElementById("r1").innerHTML = "rock: " + rC1; 
+        }
+    }
+
+    function rockC2 () {
+        rC2--;
+        if (rC2 <= 0) {
+            document.getElementById("r2").innerHTML = "rock: NO MORE LEFT!"; 
+        }
+        else {
+            document.getElementById("r2").innerHTML = "rock: " + rC2; 
+        }
+    }
+    function paperC1 () {
+        pC1--;
+        if (pc1 <= 0) {
+            document.getElementById("p1").innerHTML = "paper: NO MORE LEFT!"; 
+        }
+        else {
+            document.getElementById("p1").innerHTML = "paper: " + pc1; 
+        }
+    }
+
+
+
+    function reset() {
+    let rC1 = 5;
+    let rC2 = 5;
+    let pC1 = 5;
+    let pC2 = 5;
+    let sC1 = 5;
+    let sC2 = 5;
     }
 
 
@@ -34,7 +70,7 @@
     .p1,
     .aI {
         display: inline-block;
-        padding: 1rem 20rem;
+        padding: 4rem 19rem;
         vertical-align: middle;
     }
     .aI {
@@ -57,13 +93,33 @@
         font-size: 30px;
     }
 
-
-
     img {
         margin: auto;
         display: block;
         width: 80%;
     }
+
+    .reset { 
+        padding-top: 20px;
+        text-align: center;
+    }
+    .rules {
+        text-align: center;
+        padding: 100px;
+    }
+    #wc {
+        font-size: 25px;
+    }
+    p {
+        font-size: 20px;
+    }
+    #winner {
+        text-align: center;
+        padding-bottom: 70px;
+    }
+
+
+
 </style>
 
 
@@ -72,15 +128,20 @@
 
         <div class="p1">
             <h1>You</h1>
-            <button id="rock1">
+            <button id="rock1" onclick = "rockC1()">
                 <img src="rock.png" />
             </button>
-            <button id="paper1">
+            <button id="paper1" onclick = "paperC1()">
                 <img src="paper.png" />
             </button>
             <button id="scissors1">
                 <img src="scissors.png" />
             </button>
+            <h2 id = "wc">Weapon count</h2>
+            <p id = "r1">rock : 5</p>
+            <p id = "p1">paper : 5</p>
+            <p id = "s1">scissor : 5</p>
+            
         </div>
 
 
@@ -88,7 +149,7 @@
         <div class="aI">
             <h2>AI </h2>
 
-            <button id="rock2">
+            <button id="rock2" onclick = "rockC2()">
                 <img src="rock.png" />
             </button>
             <button id="paper2">
@@ -97,10 +158,38 @@
             <button id="scissors2">
                 <img src="scissors.png" />
             </button>
-
-
+            <h2 id = "wc">Weapon count</h2>
+            <p id ="r2">rock : 5</p>
+            <p id = "p2">paper : 5</p>
+            <p id = "s2">scissor : 5</p>
         </div>
     </div>
+
+
+    <p id = "winner"> Winner of The Round: __________</p>
+
+<div class = "reset">
+<button id = "reset">Reset</button>
+</div>
+
+<div class = "rules">
+<h3>THE RULES </h3>
+<p>
+    XRPS is a two player game where each player controls a limited arsenal of rocks, papers, and
+    scissors that they must play against each other. The object of the game is to capture all of the
+    weapons in your opponent’s arsenal.
+    A human will play against the computer.
+    During a round, each player will choose to play a weapon from his or her arsenal (a rock, a
+    paper, or a scissor). The winner of the round is determined in the following way:
+    ● Rock beats scissor
+    ● Scissor beats paper
+    ● Paper beats rock
+    The winner of the round collects the opponent’s played weapon and adds it to their arsenal. In
+    the event of a tie, each player recovers their own weapon
+    If I play rock and my opponent plays scissor, I win the round and add the scissor to my arsenal.
+    The game ends when one player has all of the weapons. 
+</p>
+</div>
 
 
 
