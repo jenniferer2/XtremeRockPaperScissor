@@ -15,45 +15,277 @@
     let pC2 = 5;
     let sC1 = 5;
     let sC2 = 5;
+    let human = 0;
+    let aI = 0;
+    let log = "";
+    let ro = 0;
+    let pa = 0;
+    let sc = 0;
+    let ck = 0;
+    let pe = 0;
+    let or = 0;
 
-    function rockC1 () {
-        rC1--;
-        if (rC1 <= 0) {
-            document.getElementById("r1").innerHTML = "rock: NO MORE LEFT!"; 
+
+
+
+    function play() {
+        var aIc = Math.floor(Math.random() * 3);
+        if (aIc == 1) {
+            aI = 1;
+            rockC2();
+        }
+        else if (aIc == 2) {
+            aI = 2;
+            paperC2();
         }
         else {
-            document.getElementById("r1").innerHTML = "rock: " + rC1; 
+            aI = 3;
+            scissorC2();
+        }
+    }
+    function check() {
+        if (aI == 0 || human == 0) {
+            document.getElementById("message").innerHTML = "No weapon used!";
+            log = log + ""; 
+            document.getElementById("log").innerHTML = "\n" + log;
+
+
+        }
+        else {
+
+            if (aI == human) {
+                document.getElementById("message").innerHTML = "It is a tie.";
+
+                if (aI == 1) {
+                    log = log + "It is a tie with the AI and human using rock, " + "\n";
+                }
+                if (aI == 2) {
+                    log = log + "It is a tie with the AI and human using paper, " + "\n";
+                }
+                else {
+                    log = log + "It is a tie with the AI and human using scissor, " + "\n";
+                }
+                document.getElementById("log").innerHTML = "\n" + log;
+            }
+
+            if (aI == 1 && human == 2) {
+                document.getElementById("message").innerHTML = "You won.";
+                log = log + "You won by using paper and AI using rock, " + "\n";
+                document.getElementById("log").innerHTML = "\n" + log;
+            }
+            if (aI == 1 && human == 3) {
+                document.getElementById("message").innerHTML = "AI won.";
+                log = log + "AI won by using rock and you used scissor, " + "\n";
+                document.getElementById("log").innerHTML = "\n" + log;
+            }
+            if (aI == 2 && human == 1) {
+                document.getElementById("message").innerHTML = "AI won.";
+                log = log + "AI won by using paper and you used rock, " + "\n";
+                document.getElementById("log").innerHTML = "\n" + log;
+            }
+            if (aI == 2 && human == 3) {
+                document.getElementById("message").innerHTML = "You won.";
+                log = log + "You won by using scissor and AI used paper, " + "\n";
+                document.getElementById("log").innerHTML = "\n" + log;
+
+            }
+            if (aI == 3 && human == 1) {
+                document.getElementById("message").innerHTML = "You won";
+                log = log + "You won by using rock and AI used scissor, " + "\n";
+                document.getElementById("log").innerHTML = "\n" + log;
+            }
+            if (aI == 3 && human == 2) {
+                document.getElementById("message").innerHTML = "AI won.";
+                log = log + "AI won by using scissor and you used paper, " + "\n";
+                document.getElementById("log").innerHTML = "\n" + log;
+            }
         }
     }
 
-    function rockC2 () {
+    function rockC1() {
+        rC1--;
+
+        if (rC1 <= 0) {
+            document.getElementById("r1").innerHTML = "rock: NO MORE LEFT!";
+            document.getElementById("rock1").hidden = true;
+            document.getElementById("humanC").src = "blank.png";
+            human = 0; 
+            
+
+        }
+        else {
+            ro++;
+            pa = 0;
+            sc = 0;
+
+            if (ro >= 3) {
+                document.getElementById("r1").innerHTML = "You have used rock 3 times in a row, it has been deleted.";
+                document.getElementById("rock1").hidden = true;
+            }
+            else {
+                document.getElementById("r1").innerHTML = "rock: " + rC1;
+                document.getElementById("humanC").src = "rock.png";
+                human = 1;
+            }
+
+
+        }
+    }
+
+    function rockC2() {
         rC2--;
         if (rC2 <= 0) {
-            document.getElementById("r2").innerHTML = "rock: NO MORE LEFT!"; 
+            document.getElementById("r2").innerHTML = "rock: NO MORE LEFT!";
+            document.getElementById("otherc").src = "blank.png";
+            document.getElementById("rock2").hidden = true;
+            aI = 0; 
+           
         }
         else {
-            document.getElementById("r2").innerHTML = "rock: " + rC2; 
+            ck++;
+            or = 0;
+            pe = 0;
+            if (ck == 2) {
+                aI = 3; 
+                ck = 0;
+            }
+            else {
+
+                document.getElementById("r2").innerHTML = "rock: " + rC2;
+                document.getElementById("otherC").src = "rock.png";
+            }
         }
     }
-    function paperC1 () {
+    function paperC1() {
         pC1--;
-        if (pc1 <= 0) {
-            document.getElementById("p1").innerHTML = "paper: NO MORE LEFT!"; 
+        if (pC1 <= 0) {
+            document.getElementById("pa1").innerHTML = "paper: NO MORE LEFT!";
+            document.getElementById("humanC").src = "blank.png";
+            document.getElementById("paper1").hidden = true;
+            human = 0;
+
+          
+
         }
         else {
-            document.getElementById("p1").innerHTML = "paper: " + pc1; 
+            pa++;
+            ro = 0;
+            sc = 0;
+            if (pa >= 3) {
+                document.getElementById("pa1").innerHTML = "You have used paper 3 times in a row, it has been deleted.";
+                document.getElementById("paper1").hidden = true;
+            }
+            else {
+                document.getElementById("pa1").innerHTML = "paper: " + pC1;
+                document.getElementById("humanC").src = "paper.png";
+                human = 2;
+            }
+
         }
     }
+    function paperC2() {
+        pC2--;
+        if (pC2 <= 0) {
+            document.getElementById("p2").innerHTML = "paper: NO MORE LEFT!";
+            document.getElementById("otherC").src = "blank.png";
+            document.getElementById("paper2").hidden = true;
+          aI = 0; 
+        }
+        else {
+            pe++;     
+            ck = 0;
+            or = 0;
+            if (pe == 2) {
+                aI = 3;
+                pe = 0; 
+            }
+            else {
+                document.getElementById("p2").innerHTML = "paper: " + pC2;
+                document.getElementById("otherC").src = "paper.png";
+            }
+
+        }
+    }
+    function scissorC1() {
+        sC1--;
+        if (sC1 <= 0) {
+            document.getElementById("s1").innerHTML = "scissor : NO MORE LEFT!";
+            document.getElementById("humanC").src = "blank.png";
+            document.getElementById("scissors1").hidden = true;
+            human = 0; 
+      
+
+        }
+        else {
+            sc++;         
+            ro = 0;   
+            pa = 0;
+            if (sc >= 3) {
+                document.getElementById("s1").innerHTML = "You have used scissor 3 times in a row, it has been deleted.";
+                document.getElementById("scissors1").hidden = true;
+            }
+            else {
+                document.getElementById("s1").innerHTML = "scissor : " + sC1;
+                document.getElementById("humanC").src = "scissors.png";
+                human = 3;
+            }
+        }
+    }
+    function scissorC2() {
+        sC2--;
+        if (sC2 <= 0) {
+            document.getElementById("s2").innerHTML = "scissor : NO MORE LEFT!";
+            document.getElementById("otherC").src = "blank.png";
+            document.getElementById("scissors2").hidden = true;
+            aI = 0;
+
+       
+        }
+        else {
+            or++;
+            ck = 0;   
+            pe = 0;
+            if (or == 2) {
+                aI = 1;
+                or = 0; 
+            }
+            else {
+                document.getElementById("s2").innerHTML = "scissor : " + sC2;
+                document.getElementById("otherC").src = "scissors.png";
+            }
+
+        }
+    }
+
 
 
 
     function reset() {
-    let rC1 = 5;
-    let rC2 = 5;
-    let pC1 = 5;
-    let pC2 = 5;
-    let sC1 = 5;
-    let sC2 = 5;
+        let rC1 = 5;
+        let rC2 = 5;
+        let pC1 = 5;
+        let pC2 = 5;
+        let sC1 = 5;
+        let sC2 = 5;
+        document.getElementById("r1").innerHTML = "rock : 5"
+        document.getElementById("pa1").innerHTML = "paper : 5"
+        document.getElementById("s1").innerHTML = "scissor : 5"
+        document.getElementById("r2").innerHTML = "rock : 5"
+        document.getElementById("p2").innerHTML = "paper : 5"
+        document.getElementById("s2").innerHTML = "scissor : 5"
+        document.getElementById("humanC").src = "blank.png";
+        document.getElementById("otherC").src = "blank.png";
+        document.getElementById("message").innerHTML = "______";
+        document.getElementById("rock1").hidden = false;
+        document.getElementById("rock2").hidden = false;
+        document.getElementById("paper1").hidden = false;
+        document.getElementById("paper2").hidden = false;
+        document.getElementById("scissors1").hidden = false;
+        document.getElementById("scissors2").hidden = false;
+        document.getElementById("log").innerHTML = "log";
+
+
+
     }
 
 
@@ -73,11 +305,12 @@
         padding: 4rem 19rem;
         vertical-align: middle;
     }
+
     .aI {
         padding-top: 80px;
     }
 
-    
+
 
     button {
         width: 70px;
@@ -89,6 +322,7 @@
         text-align: left;
         margin-left: 60px;
     }
+
     h2 {
         font-size: 30px;
     }
@@ -99,27 +333,42 @@
         width: 80%;
     }
 
-    .reset { 
+    .reset {
         padding-top: 20px;
         text-align: center;
     }
+
     .rules {
         text-align: center;
         padding: 100px;
     }
+
     #wc {
         font-size: 25px;
     }
+
     p {
         font-size: 20px;
     }
-    #winner {
+
+    #log {
         text-align: center;
         padding-bottom: 70px;
+        margin: 120px;
     }
 
+    .c {
+        width: 7%;
+    }
 
+    #humanC {
+        padding-bottom: 10px;
+    }
 
+    #message {
+        text-align: center;
+        font-size: 20px;
+    }
 </style>
 
 
@@ -128,20 +377,26 @@
 
         <div class="p1">
             <h1>You</h1>
-            <button id="rock1" onclick = "rockC1()">
+            <button id="rock1" onclick="rockC1(); play(); check();">
                 <img src="rock.png" />
             </button>
-            <button id="paper1" onclick = "paperC1()">
+            <button id="paper1" onclick="paperC1(); play(); check();">
                 <img src="paper.png" />
             </button>
-            <button id="scissors1">
+            <button id="scissors1" onclick="scissorC1(); play(); check();">
                 <img src="scissors.png" />
             </button>
-            <h2 id = "wc">Weapon count</h2>
-            <p id = "r1">rock : 5</p>
-            <p id = "p1">paper : 5</p>
-            <p id = "s1">scissor : 5</p>
-            
+            <h2 id="wc">Weapon count</h2>
+            <p id="r1">rock : 5</p>
+            <p id="pa1">paper : 5</p>
+            <p id="s1">scissor : 5</p>
+
+        </div>
+
+        <div class="playground">
+            <img class="c" id="humanC" src="blank.png" />
+            <img class="c" id="otherC" src="blank.png" />
+            <p id="message">_____ won the round.</p>
         </div>
 
 
@@ -149,7 +404,7 @@
         <div class="aI">
             <h2>AI </h2>
 
-            <button id="rock2" onclick = "rockC2()">
+            <button id="rock2">
                 <img src="rock.png" />
             </button>
             <button id="paper2">
@@ -158,38 +413,38 @@
             <button id="scissors2">
                 <img src="scissors.png" />
             </button>
-            <h2 id = "wc">Weapon count</h2>
-            <p id ="r2">rock : 5</p>
-            <p id = "p2">paper : 5</p>
-            <p id = "s2">scissor : 5</p>
+            <h2 id="wc">Weapon count</h2>
+            <p id="r2">rock : 5</p>
+            <p id="p2">paper : 5</p>
+            <p id="s2">scissor : 5</p>
         </div>
     </div>
 
 
-    <p id = "winner"> Winner of The Round: __________</p>
+    <p id="log"> The log : </p>
 
-<div class = "reset">
-<button id = "reset">Reset</button>
-</div>
+    <div class="reset">
+        <button id="reset" onclick="reset()">Reset</button>
+    </div>
 
-<div class = "rules">
-<h3>THE RULES </h3>
-<p>
-    XRPS is a two player game where each player controls a limited arsenal of rocks, papers, and
-    scissors that they must play against each other. The object of the game is to capture all of the
-    weapons in your opponent’s arsenal.
-    A human will play against the computer.
-    During a round, each player will choose to play a weapon from his or her arsenal (a rock, a
-    paper, or a scissor). The winner of the round is determined in the following way:
-    ● Rock beats scissor
-    ● Scissor beats paper
-    ● Paper beats rock
-    The winner of the round collects the opponent’s played weapon and adds it to their arsenal. In
-    the event of a tie, each player recovers their own weapon
-    If I play rock and my opponent plays scissor, I win the round and add the scissor to my arsenal.
-    The game ends when one player has all of the weapons. 
-</p>
-</div>
+    <div class="rules">
+        <h3>THE RULES </h3>
+        <p>
+            XRPS is a two player game where each player controls a limited arsenal of rocks, papers, and
+            scissors that they must play against each other. The object of the game is to capture all of the
+            weapons in your opponent’s arsenal.
+            A human will play against the computer.
+            During a round, each player will choose to play a weapon from his or her arsenal (a rock, a
+            paper, or a scissor). The winner of the round is determined in the following way:
+            ● Rock beats scissor
+            ● Scissor beats paper
+            ● Paper beats rock
+            The winner of the round collects the opponent’s played weapon and adds it to their arsenal. In
+            the event of a tie, each player recovers their own weapon
+            If I play rock and my opponent plays scissor, I win the round and add the scissor to my arsenal.
+            The game ends when one player has all of the weapons.
+        </p>
+    </div>
 
 
 
